@@ -12,7 +12,7 @@
 <body>
 <main>
 <h1>公開写真しあげる君をダウンロード</h1>
-<p id="status">HTMLファイルのダウンロードが始まります。自動で始まらない場合は、下のボタンを押してください。</p>
+<p id="status">ダウンロードする場合は、下のボタンを押してください。確認画面で「OK」を選ぶと保存を開始します。</p>
 <a id="download" class="button" href="./index.html" download="koukaishashin_shiagerukun.html">HTMLをダウンロード</a>
 <p>保存した <strong>koukaishashin_shiagerukun.html</strong> をブラウザで開いてご利用ください。</p>
 <small>ダウンロード後はオフラインでも利用できます。画像は端末内で処理し、外部に送信しません。</small>
@@ -38,8 +38,11 @@ async function save(){
   document.getElementById('status').textContent='ダウンロードできませんでした。通信状態を確認し、下のボタンでもう一度お試しください。';
  }
 }
-link.addEventListener('click',event=>{event.preventDefault();save();});
-save();
+link.addEventListener('click', event => {
+ event.preventDefault();
+ if (!window.confirm('「koukaishashin_shiagerukun.html」をダウンロードしますか？')) return;
+ save();
+});
 </script>
 </body>
 </html>
